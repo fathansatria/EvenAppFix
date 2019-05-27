@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/list_1"
+    android:layout_marginLeft="15dp"
+    android:layout_marginTop="12dp"
+    android:layout_marginRight="15dp"
+    android:layout_marginBottom="7dp"
+    android:foreground="?android:attr/selectableItemBackground">
+
+    <TextView
+        android:id="@+id/et_eventName"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:text="Buka Bersama"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        android:textSize="22sp" />
+
+    <TextView
+        android:id="@+id/et_eventDesc"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_eventName"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="10dp"
+        android:text="Acara buka bersama bulanan, sifatnya wajib ! "
+        android:textSize="15sp" />
+
+
+</RelativeLayout>
