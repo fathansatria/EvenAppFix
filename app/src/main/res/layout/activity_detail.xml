@@ -50,28 +50,25 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/bottom_sheet"
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
-            android:layout_height="64dp"
+            android:layout_height="200dp"
             android:orientation="vertical"
             android:background="@color/colorPrimary" >
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Partisipan Terdaftar"
-                android:textSize="20sp"
-                android:textColor="#ffffff"
-                android:layout_margin="20dp"/>
+            <ListView
+                android:id="@+id/list_perserta"
+                android:layout_width="match_parent"
+                android:background="#C4C4C4"
+                android:layout_height="wrap_content"></ListView>
 
         </LinearLayout>
 
-        <ListView
-            android:layout_width="match_parent"
-            android:background="#C4C4C4"
-            android:layout_height="200dp"></ListView>
+
 
         <Button
+            android:id="@+id/btn_join"
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

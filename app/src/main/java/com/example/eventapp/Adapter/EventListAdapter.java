@@ -50,8 +50,8 @@ public class EventListAdapter extends BaseAdapter {
             vi = inflater.inflate(R.layout.event_item,null);
 
 
-        TextView tv_name= (TextView)vi.findViewById(R.id.et_eventName);
-        TextView tv_desc = (TextView)vi.findViewById(R.id.et_eventDesc);
+        TextView tv_name= (TextView)vi.findViewById(R.id.tv_eventName);
+        TextView tv_desc = (TextView)vi.findViewById(R.id.tv_eventDesc);
 
 
         EventModel event = eventData.get(position);

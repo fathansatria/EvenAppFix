@@ -51,14 +51,18 @@ public class PesertaListAdapter extends BaseAdapter {
             vi = inflater.inflate(R.layout.people_item,null);
 
 
-        TextView tv_name= (TextView)vi.findViewById(R.id.et_eventName);
-        TextView tv_desc = (TextView)vi.findViewById(R.id.et_eventDesc);
+        TextView tv_name= (TextView)vi.findViewById(R.id.tv_pesertaName);
+        TextView tv_telp = (TextView)vi.findViewById(R.id.tv_pesertaTelp);
+        TextView tv_email = (TextView)vi.findViewById(R.id.tv_pesertaEmail);
+
 
 
         PesertaModel peserta = pesertaData.get(position);
 
         tv_name.setText(peserta.getNamaPeserta());
-        tv_desc.setText(peserta.getKeterangan());
+        tv_email.setText(peserta.getEmail());
+        tv_telp.setText(peserta.getPhone());
+
 
         return vi;
     }

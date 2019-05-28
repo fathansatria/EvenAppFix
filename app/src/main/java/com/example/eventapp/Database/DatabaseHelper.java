@@ -24,40 +24,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String TABLE_PESERTA = "mahasiswa_table";
     private static final String ID = "id";
+    private static final String ID_EVENT = "id_event";
     private static final String NAMA = "nama";
-    private static final String KETERANGAN = "Keterangan";
+    private static final String EMAIL = "e_mail";
+    private static final String TELEPON = "telepon";
+
+
 
 
     private String TBL_CREATE_MHS = "create table " + TABLE_PESERTA + " (" +
             ID + " int primary key," +
             NAMA + " text," +
-            KETERANGAN + " text )";
-
-    private static final String TABLE_MATKUL = "matkul_table";
-    private static final String KODEKULIAH = "kodekuliah";
-    private static final String NAMAMATKUL = "namamatkul";
-    private static final String SKS = "sks";
-    private static final String KUIS = "kuis";
-    private static final String TUGAS = "tugas";
-    private static final String UTS = "uts";
-    private static final String UAS = "uas";
-    private static final String FINALPROJECT = "finalproject";
-    private static final String PRAKTIKUM = "praktikum";
-    private static final String DOSEN = "dosen";
-    private static final String USER = "user";
-    private static final String KUIS_PERSENT = "kuis_persent";
-    private static final String TUGAS_PERSENT = "tugas_persent";
-    private static final String UTS_PERSENT = "uts_persent";
-    private static final String UAS_PERSENT = "uas_persent";
-    private static final String FINALPROJECT_PERSENT = "finalproject_persent";
-    private static final String PRAKTIKUM_PERSENT = "praktikum_persent";
-    private static final String TARGET = "target";
-    private static final String JUMLAH_KUIS = "jumlah_kuis";
-    private static final String JUMLAH_TUGAS = "jumlah_tugas";
-
-
-
-
+            ID_EVENT + " integer," +
+            EMAIL + " text," +
+            TELEPON + " text )";
 
 
     public DatabaseHelper(Context context)
@@ -72,29 +52,31 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_MATKUL);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_PESERTA);
         onCreate(sqLiteDatabase);
     }
 
-    public long registerStudent(PesertaModel peserta){
+    public long daftarPeserta(PesertaModel peserta){
         SQLiteDatabase db = this.getWritableDatabase();
 
             ContentValues values = new ContentValues();
             values.put(NAMA, peserta.getNamaPeserta());
-            values.put(KETERANGAN, peserta.getKeterangan());
-            long id = db.insert(TABLE_PESERTA, null, values);
+            values.put(EMAIL, peserta.getEmail());
+            values.put(TELEPON, peserta.getPhone());
+            values.put(ID_EVENT, peserta.getId_event());
+
+
+        long id = db.insert(TABLE_PESERTA, null, values);
 
         // assigning tags to tbl create mengambil
         db.close();
+
         return id ;
     }
 
     /*
      * Creating tag
      */
-
-
 
 
     public List<PesertaModel> getAllPeserta() {
@@ -112,7 +94,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             do {
                 PesertaModel std = new PesertaModel();
                 std.setNamaPeserta((c.getString(c.getColumnIndex(NAMA))));
-                std.setKeterangan(c.getString(c.getColumnIndex(KETERANGAN)));
+                std.setEmail(c.getString(c.getColumnIndex(EMAIL)));
+                std.setPhone(c.getString(c.getColumnIndex(TELEPON)));
+                std.setId_event(c.getInt(c.getColumnIndex(ID_EVENT)));
+
 
                 // adding to todo list
                 pesertaModels.add(std);
@@ -132,50 +117,34 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             db.close();
     }
 
-//    public List<Course> getAllCoursesByUsername(String username) {
-//        List<Course> courses = new ArrayList<Course>();
-//
-//        String selectQuery = "SELECT  * FROM " + TABLE_MATKUL + " tm WHERE tm."
-//                + USER + " = '" + username + "'";
-//
-//        Log.e(DATABASENAME, selectQuery);
-//
-//        SQLiteDatabase db = this.getReadableDatabase();
-//        Cursor c = db.rawQuery(selectQuery, null);
-//
-//        // looping through all rows and adding to list
-//        if (c.moveToFirst()) {
-//            do {
-//
-//                Course c1 = new Course();
-//                c1.setCourseName(c.getString((c.getColumnIndex(NAMAMATKUL))));
-//                c1.setTeacher(c.getString((c.getColumnIndex(DOSEN))));
-//                c1.setSks(c.getInt((c.getColumnIndex(SKS))));
-//                c1.setJumlah_quiz(c.getInt((c.getColumnIndex(JUMLAH_KUIS))));
-//                c1.setJumlah_tugas(c.getInt((c.getColumnIndex(JUMLAH_TUGAS))));
-//                c1.setUser(c.getString((c.getColumnIndex(USER))));
-//                c1.setUts(c.getDouble((c.getColumnIndex(UTS))));
-//                c1.setUas(c.getDouble((c.getColumnIndex(UAS))));
-//                c1.setTugas(c.getDouble((c.getColumnIndex(TUGAS))));
-//                c1.setQuiz(c.getDouble((c.getColumnIndex(KUIS))));
-//                c1.setFp(c.getDouble((c.getColumnIndex(FINALPROJECT))));
-//                c1.setPraktikum(c.getDouble((c.getColumnIndex(PRAKTIKUM))));
-//                c1.setUtsPersent(c.getDouble((c.getColumnIndex(UTS_PERSENT))));
-//                c1.setUasPersent(c.getDouble((c.getColumnIndex(UAS_PERSENT))));
-//                c1.setTugasPersent(c.getDouble((c.getColumnIndex(TUGAS_PERSENT))));
-//                c1.setQuizPersent(c.getDouble((c.getColumnIndex(KUIS_PERSENT))));
-//                c1.setFpPersent(c.getDouble((c.getColumnIndex(FINALPROJECT_PERSENT))));
-//                c1.setTarget(c.getString((c.getColumnIndex(TARGET))));
-//                c1.setPraktikumPersent(c.getDouble((c.getColumnIndex(PRAKTIKUM_PERSENT))));
-//
-//                // adding to courses
-//                courses.add(c1);
-//
-//            } while (c.moveToNext());
-//        }
-//
-//        return courses;
-//    }
+    public List<PesertaModel> getAllPesertaByEventId(int id) {
+        List<PesertaModel> pesertas = new ArrayList<PesertaModel>();
+
+        String selectQuery = "SELECT  * FROM " + TABLE_PESERTA + " tm WHERE tm."
+                + ID_EVENT + " = '" + id + "'";
+
+        Log.e(DATABASENAME, selectQuery);
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (c.moveToFirst()) {
+            do {
+
+                PesertaModel c1 = new PesertaModel();
+                c1.setNamaPeserta(c.getString((c.getColumnIndex(NAMA))));
+                c1.setPhone(c.getString((c.getColumnIndex(TELEPON))));
+                c1.setEmail(c.getString((c.getColumnIndex(EMAIL))));
+
+                // adding to courses
+                pesertas.add(c1);
+
+            } while (c.moveToNext());
+        }
+
+        return pesertas;
+    }
 
 
 }

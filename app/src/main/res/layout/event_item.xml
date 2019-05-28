@@ -12,7 +12,7 @@
     android:foreground="?android:attr/selectableItemBackground">
 
     <TextView
-        android:id="@+id/et_eventName"
+        android:id="@+id/tv_eventName"
         android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -25,10 +25,10 @@
         android:textSize="22sp" />
 
     <TextView
-        android:id="@+id/et_eventDesc"
+        android:id="@+id/tv_eventDesc"
         android:layout_width="320dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/et_eventName"
+        android:layout_below="@id/tv_eventName"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="5dp"

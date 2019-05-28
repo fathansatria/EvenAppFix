@@ -5,14 +5,14 @@ import java.util.Date;
 public class EventModel {
 
     private String eventName;
-    private Date eventDate;
-    private String eventPlace;
-    private String description;
+    private int eventId;
+    private String eventPlace = null;
+    private String description= null;
 
     //setter
-    public void setEventDate(Date eventDate) {
-        this.eventDate = eventDate;
-    }
+//    public void setEventDate(Date eventDate) {
+//        this.eventDate = eventDate;
+//    }
 
     public void setEventName(String eventName) {
         this.eventName = eventName;
@@ -26,15 +26,18 @@ public class EventModel {
         this.description = description;
     }
 
+    public void setEventId(int eventId) {
+        this.eventId = eventId;
+    }
 
     //getter
     public String getEventName() {
         return eventName;
     }
 
-    public Date getEventDate() {
-        return eventDate;
-    }
+//    public Date getEventDate() {
+//        return eventDate;
+//    }
 
     public String getEventPlace() {
         return eventPlace;
@@ -42,5 +45,9 @@ public class EventModel {
 
     public String getDescription() {
         return description;
+    }
+
+    public int getEventId() {
+        return eventId;
     }
 }
